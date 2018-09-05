@@ -13,6 +13,7 @@ router.get('/getAssignment', function(req,res,next) {
     assert.equal(null, err);
     var cursor = db.collection('assignments').find();
     cursor.forEach();
+    var cursor;
   });
 });
 
