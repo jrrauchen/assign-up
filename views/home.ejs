@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -39,7 +38,41 @@
         </style>
   </head>
   <body>
-    <nav>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      var URL = 'http://localhost:8080/insert';
+      var item = {
+        "course": "INFO101",
+        "title": "Week 7 Discussion",
+        "createdDate": "35239429913546",
+        "dueDate": "4852038230523852",
+        "details": "fefee",
+        "completed": false
+
+      };
+
+      $("#insert").on('click', function(){
+        jQuery.ajax({
+        type: "POST",
+        url: URL,
+        data:  JSON.stringify(item),
+        dataType: "jsonp",
+        contentType: "application/json; charset=utf-8",
+        success: function (msg)
+                { alert('success') },
+        error: function (err)
+        { alert(err.responseText)}
+    });
+      })
+    }
+    )
+    </script>
+
+          <nav>
       <ul>
         <% if (user) { %>
         <li><a href="/auth/logout">Log out</a></li>
@@ -48,6 +81,7 @@
         <% } %>
         <li><a href="/"> Homepage </a></li>
         <li><a href="/profile"> Profile </a></li>
+        <li id="insert">Insert</li>
       </ul>
     </nav>
     <header>
